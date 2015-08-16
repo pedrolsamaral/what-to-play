@@ -1,0 +1,6 @@
+wtp-server/.classpath
+*.project
+.settings/
+wtp-server/vrecommended-mappings.json
+wtp-server/vrecommended-notfound.json
+wtp-server/vrecommended.json
