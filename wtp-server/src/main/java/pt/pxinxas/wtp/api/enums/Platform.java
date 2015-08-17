@@ -1,4 +1,4 @@
-package pt.pxinxas.wtp.server.enums;
+package pt.pxinxas.wtp.api.enums;
 
 public enum Platform {
 

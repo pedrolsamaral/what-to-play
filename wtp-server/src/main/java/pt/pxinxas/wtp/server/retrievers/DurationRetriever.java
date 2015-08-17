@@ -22,8 +22,8 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import pt.pxinxas.wtp.server.exceptions.DurationNotFoundException;
-import pt.pxinxas.wtp.server.exceptions.GameNotFoundException;
+import pt.pxinxas.wtp.api.exceptions.DurationNotFoundException;
+import pt.pxinxas.wtp.api.exceptions.GameNotFoundException;
 
 public class DurationRetriever {
 

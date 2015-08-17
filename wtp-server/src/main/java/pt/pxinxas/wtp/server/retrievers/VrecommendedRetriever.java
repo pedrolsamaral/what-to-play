@@ -13,9 +13,9 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import pt.pxinxas.wtp.server.enums.Platform;
+import pt.pxinxas.wtp.api.enums.Platform;
 
-public class GamesRetriever {
+public class VrecommendedRetriever {
 
 	private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 	private static final List<String> TABLE_META = Arrays.asList("box art", "boxart", "title", "genre", "description", "picture", "title",

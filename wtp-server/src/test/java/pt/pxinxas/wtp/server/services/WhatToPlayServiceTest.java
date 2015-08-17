@@ -5,24 +5,24 @@ import java.util.Collection;
 import org.junit.Assert;
 import org.junit.Test;
 
-import pt.pxinxas.wtp.server.beans.GameDuration;
-import pt.pxinxas.wtp.server.enums.Platform;
+import pt.pxinxas.wtp.api.beans.Game;
+import pt.pxinxas.wtp.api.enums.Platform;
 
 public class WhatToPlayServiceTest {
 
-	private final WhatToPlayService service = new WhatToPlayService();
+	private final WhatToPlayServiceImpl service = new WhatToPlayServiceImpl();
 
 	@Test
 	public void testPlatformFullLoad() {
 		service.fullLoad(Platform.PSX);
-		Collection<GameDuration> wiiUDuration = service.getGamesDuration(Platform.WIIU);
+		Collection<Game> wiiUDuration = service.getGamesDuration(Platform.WIIU);
 		Assert.assertFalse(wiiUDuration.isEmpty());
 	}
 
 	@Test
 	public void testFullLoad() {
 		service.fullLoad();
-		Collection<GameDuration> wiiUDuration = service.getGamesDuration(Platform.WIIU);
+		Collection<Game> wiiUDuration = service.getGamesDuration(Platform.WIIU);
 		Assert.assertFalse(wiiUDuration.isEmpty());
 	}
 
