@@ -1,4 +1,4 @@
-package pt.pxinxas.wtp.server.dao;
+package pt.pxinxas.wtp.server.retrievers;
 
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
@@ -25,7 +25,7 @@ import org.slf4j.LoggerFactory;
 import pt.pxinxas.wtp.server.exceptions.DurationNotFoundException;
 import pt.pxinxas.wtp.server.exceptions.GameNotFoundException;
 
-public class DurationDao {
+public class DurationRetriever {
 
 	private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 	private static final String HTLB_SEARCH_URL = "http://howlongtobeat.com/search_main.php";

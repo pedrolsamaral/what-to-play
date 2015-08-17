@@ -1,4 +1,4 @@
-package pt.pxinxas.wtp.server.dao;
+package pt.pxinxas.wtp.server.retrievers;
 
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import pt.pxinxas.wtp.server.enums.Platform;
 
-public class GamesDao {
+public class GamesRetriever {
 
 	private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 	private static final List<String> TABLE_META = Arrays.asList("box art", "boxart", "title", "genre", "description", "picture", "title",
