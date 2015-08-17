@@ -1,12 +1,12 @@
 package pt.pxinxas.wtp.api.daos;
 
-import java.util.Collection;
+import java.util.List;
 
 import pt.pxinxas.wtp.api.beans.Game;
 
 public interface MissingsDao {
 
-	Collection<Game> getMissings();
+	List<Game> getMissings();
 
 	void add(Game game);
 

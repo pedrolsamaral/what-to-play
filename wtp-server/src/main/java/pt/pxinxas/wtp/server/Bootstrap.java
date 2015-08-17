@@ -52,7 +52,9 @@ public class Bootstrap {
 				List<String> mappingsList = mappingsDao.getGameMappings(GamesList.V_REC, gameName);
 				if (mappingsList != null && !mappingsList.isEmpty()) {
 					for (String mappedGameName : mappingsList) {
-						loadGameDuration(GamesList.V_REC, platform, mappedGameName);
+						if (!preloadedGames.contains(mappedGameName)) {
+							loadGameDuration(GamesList.V_REC, platform, mappedGameName);
+						}
 					}
 				} else {
 					loadGameDuration(GamesList.V_REC, platform, gameName);
@@ -62,7 +64,6 @@ public class Bootstrap {
 
 		durationsDao.save();
 		missingsDao.save();
-		mappingsDao.save();
 	}
 
 	private void loadGameDuration(GamesList list, Platform platform, String gameName) {
@@ -74,16 +75,13 @@ public class Bootstrap {
 		Double duration;
 		try {
 			duration = durationRetriever.getDuration(gameName);
-			LOG.info("Game: {} Duration: {}", gameName, duration);
 			game.setDuration(duration);
 			durationsDao.add(game);
 			missingsDao.remove(game);
 		} catch (GameNotFoundException e) {
-			LOG.info("Game not found: {} ", gameName);
 			game.setMissingReason(MissingReason.NOT_FOUND);
-			missingsDao.remove(game);
+			missingsDao.add(game);
 		} catch (DurationNotFoundException e) {
-			LOG.info("Duration not found: {} ", gameName);
 			game.setMissingReason(MissingReason.NO_DURATION);
 			missingsDao.add(game);
 		}
@@ -125,6 +123,8 @@ public class Bootstrap {
 		mappingsDao.add(GamesList.V_REC, "Threads of Fate (JA: Dewprism)", "Threads of Fate");
 		mappingsDao.add(GamesList.V_REC, "Vandal Hearts 2", "Vandal Hearts II");
 		mappingsDao.add(GamesList.V_REC, "Yu Gi Oh! Forbidden Memories ", "Yu-Gi-Oh Forbidden Memories");
+
+		mappingsDao.save();
 	}
 
 }

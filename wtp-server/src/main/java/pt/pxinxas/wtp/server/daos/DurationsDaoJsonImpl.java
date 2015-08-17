@@ -38,13 +38,17 @@ public class DurationsDaoJsonImpl implements DurationsDao {
 
 	@Override
 	public void add(Game game) {
-		durationsList.add(game);
-		addToMap(game);
+		if (!durationsList.contains(game)) {
+			LOG.info("Adding new game duration {} / {}", game.getName(), game.getDuration());
+			durationsList.add(game);
+			addToMap(game);
+		}
 	}
 
 	@Override
 	public List<String> getGamesNames(Platform platform) {
-		return platformDurationsList.get(platform).stream().map(p -> p.getName()).collect(Collectors.toList());
+		List<Game> list = platformDurationsList.get(platform);
+		return list != null ? list.stream().map(p -> p.getName()).collect(Collectors.toList()) : new ArrayList<>();
 	}
 
 	@Override
@@ -58,9 +62,10 @@ public class DurationsDaoJsonImpl implements DurationsDao {
 	}
 
 	private void load() {
+		LOG.info("Loading mappings from storage");
+		platformDurationsList = new HashMap<>();
+		durationsList = new ArrayList<>();
 		try {
-			platformDurationsList = new HashMap<>();
-			LOG.info("Loading mappings from storage");
 			durationsList = MAPPER.readValue(new File(DURATIONS_FILE), new TypeReference<List<Game>>() {
 			});
 			for (Game game : durationsList) {

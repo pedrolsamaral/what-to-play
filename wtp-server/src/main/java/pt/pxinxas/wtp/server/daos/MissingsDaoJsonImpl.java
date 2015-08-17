@@ -3,7 +3,7 @@ package pt.pxinxas.wtp.server.daos;
 import java.io.File;
 import java.io.IOException;
 import java.lang.invoke.MethodHandles;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -27,13 +27,16 @@ public class MissingsDaoJsonImpl implements MissingsDao {
 	}
 
 	@Override
-	public Collection<Game> getMissings() {
+	public List<Game> getMissings() {
 		return missingsList;
 	}
 
 	@Override
 	public void add(Game game) {
-		missingsList.add(game);
+		if (!missingsList.contains(game)) {
+			LOG.info("Adding missing game {} / {}", game.getName(), game.getMissingReason());
+			missingsList.add(game);
+		}
 	}
 
 	@Override
@@ -52,8 +55,9 @@ public class MissingsDaoJsonImpl implements MissingsDao {
 	}
 
 	private void load() {
+		LOG.info("Loading missings from storage");
+		missingsList = new ArrayList<>();
 		try {
-			LOG.info("Loading missings from storage");
 			missingsList = MAPPER.readValue(new File(MISSINGS_FILE), new TypeReference<List<Game>>() {
 			});
 		} catch (IOException e) {
