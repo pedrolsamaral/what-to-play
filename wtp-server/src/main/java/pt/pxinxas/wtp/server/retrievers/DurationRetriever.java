@@ -39,6 +39,9 @@ public class DurationRetriever {
 				String duration = hourElements.get(0).text();
 				if (!duration.equals("--")) {
 					result = !duration.equals("--") ? parseDuration(duration) : null;
+					if (duration.contains("Mins")) {
+						result = 0.5;
+					}
 				} else {
 					throw new DurationNotFoundException();
 				}
@@ -77,8 +80,9 @@ public class DurationRetriever {
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 		HttpPost httpPost = new HttpPost(HTLB_SEARCH_URL);
 		List<NameValuePair> formData = new ArrayList<NameValuePair>();
-		formData.add(new BasicNameValuePair("queryString", gameName));
+		formData.add(new BasicNameValuePair("queryString", improveGameName(gameName)));
 		formData.add(new BasicNameValuePair("t", "games"));
+		formData.add(new BasicNameValuePair("sorthead", "name"));
 		httpPost.setEntity(new UrlEncodedFormEntity(formData));
 
 		CloseableHttpResponse response = httpclient.execute(httpPost);
@@ -92,4 +96,13 @@ public class DurationRetriever {
 
 		return result;
 	}
+
+	private static String improveGameName(String gameName) {
+		String result = gameName.replaceAll("[-:!'\\*]", " ");
+
+		result = result.replaceAll("é", "e");
+
+		return result;
+	}
+
 }

@@ -36,6 +36,12 @@ public class MissingsDaoJsonImpl implements MissingsDao {
 		if (!missingsList.contains(game)) {
 			LOG.info("Adding missing game {} / {}", game.getName(), game.getMissingReason());
 			missingsList.add(game);
+		} else {
+			Game currGame = missingsList.get(missingsList.indexOf(game));
+			if (currGame.getMissingReason() != game.getMissingReason()) {
+				LOG.info("Changing missing reason {} / {}", game.getName(), game.getMissingReason());
+				currGame.setMissingReason(game.getMissingReason());
+			}
 		}
 	}
 
