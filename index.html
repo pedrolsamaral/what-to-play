@@ -1,83 +1,58 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>What-to-play by pedrolsamaral</title>
+<html lang="en" ng-app="wtpDurations">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">What-to-play</h1>
-      <h2 class="project-tagline"></h2>
-      <a href="https://github.com/pedrolsamaral/what-to-play" class="btn">View on GitHub</a>
-      <a href="https://github.com/pedrolsamaral/what-to-play/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/pedrolsamaral/what-to-play/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>What can I play</title>
+    <!-- Bootstrap core CSS -->
+    <link href="webjars/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+</head>
 
-    <section class="main-content">
-      <pre><code>&lt;!-- Main jumbotron for a primary marketing message or call to action --&gt;
-&lt;div class="jumbotron"&gt;
-    &lt;div class="container"&gt;
-        &lt;h1&gt;What Can I Play ?&lt;/h1&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="container" ng-controller="WtpDurationsController"&gt;
-    &lt;!-- Example row of columns --&gt;
-    &lt;div class="row"&gt;
-        &lt;select name="singleSelect" ng-model="currPlatform"&gt;
-            &lt;option value="" disabled selected style="display:none;"&gt;In which platform?&lt;/option&gt;
-            &lt;!-- not selected / blank option --&gt;
-            &lt;option ng-repeat="platform in platforms" value="{{platform.value}}"&gt;{{platform.label}}&lt;/option&gt;
-        &lt;/select&gt;
-        &lt;span&gt;I want to play at least&lt;/span&gt; &lt;input type="number" ng-model="minHours" style="width: 40px"/&gt;&lt;span&gt;but no more than&lt;/span&gt; &lt;input type="number" ng-model="maxHours" style="width: 40px"/&gt;&lt;span&gt;hours&lt;/span&gt;
-        &lt;div class="table-responsive"&gt;
-            &lt;table class="table table-striped"&gt;
-                &lt;thead&gt;
-                    &lt;tr&gt;
-                        &lt;th&gt;Name&lt;/th&gt;
-                        &lt;th&gt;Duration&lt;/th&gt;
-                    &lt;/tr&gt;
-                &lt;/thead&gt;
-                &lt;tbody ng-repeat="game in games"&gt;
-                    &lt;tr&gt;
-                        &lt;td ng-bind="game.name" /&gt;
-                        &lt;td ng-bind="game.duration" /&gt;
-                    &lt;/tr&gt;
-                &lt;/tbody&gt;
-            &lt;/table&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;hr&gt;
-&lt;/div&gt;
-&lt;!-- /container --&gt;
-&lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="js/index.js"&gt;&lt;/script&gt;
-</code></pre>
+<body>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container">
+            <h1>What Can I Play ?</h1>
+        </div>
+    </div>
+    <div class="container" ng-controller="WtpDurationsController">
+        <!-- Example row of columns -->
+        <div class="row">
+            <select name="singleSelect" ng-model="currPlatform">
+                <option value="" disabled selected style="display:none;">In which platform?</option>
+                <!-- not selected / blank option -->
+                <option ng-repeat="platform in platforms" value="{{platform.value}}">{{platform.label}}</option>
+            </select>
+            <span>I want to play at least</span> <input type="number" ng-model="minHours" style="width: 40px"/><span>but no more than</span> <input type="number" ng-model="maxHours" style="width: 40px"/><span>hours</span>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-repeat="game in games">
+                        <tr>
+                            <td ng-bind="game.name" />
+                            <td ng-bind="game.duration" />
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <!-- /container -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/pedrolsamaral/what-to-play">What-to-play</a> is maintained by <a href="https://github.com/pedrolsamaral">pedrolsamaral</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
-    </section>
-
-            <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-66575529-1");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
-
-  </body>
 </html>
