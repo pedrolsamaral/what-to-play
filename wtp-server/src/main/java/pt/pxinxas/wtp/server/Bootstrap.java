@@ -37,9 +37,10 @@ public class Bootstrap {
 	public Bootstrap() {
 		LOG.info("Performing system bootstrap");
 		loadMappings();
-		for (Platform platform : Platform.values()) {
-			loadDurations(platform);
-		}
+		// for (Platform platform : Platform.values()) {
+		// loadDurations(platform);
+		// }
+		loadDurations(Platform.DS);
 	}
 
 	public void loadDurations(Platform platform) {

@@ -5,3 +5,6 @@ wtp-server/vrecommended-mappings.json
 wtp-server/vrecommended-notfound.json
 wtp-server/vrecommended.json
 wtp-webapp/.classpath
+wtp-server/games-duration.json
+wtp-server/games-mapping.json
+wtp-server/games-missing.json

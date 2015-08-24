@@ -29,6 +29,10 @@ public class VrecommendedRetriever {
 				Document doc = Jsoup.connect(VREC_URL + url).get();
 				Elements gamesElements = doc.select("table tbody tr th");
 
+				if (gamesElements.size() < 10) {
+					gamesElements = doc.select("table tbody tr td:first-child");
+				}
+
 				for (Element gameElement : gamesElements) {
 					if (!TABLE_META.contains(gameElement.text().toLowerCase().trim().replace("\u00a0", ""))) {
 						gamesList.add(gameElement.text());
