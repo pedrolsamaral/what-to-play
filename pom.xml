@@ -10,7 +10,6 @@
 
 	<modules>
 		<module>wtp-server</module>
-		<module>wtp-webapp</module>
 	</modules>
 
 	<build>

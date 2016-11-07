@@ -5,6 +5,7 @@ import java.lang.invoke.MethodHandles;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -44,5 +45,18 @@ public class VrecommendedRetriever {
 		}
 
 		return gamesList;
+	}
+
+	public static void main(String[] args) {
+		String urlPrefix = "http://guerradosbairros.com/vote.php?email=da";
+		String urlSuffix = "@gmail.com&zone_id=DA";
+		Random r = new Random(System.nanoTime());
+		for (int i = 0; i < 10000; i++) {
+			try {
+				Jsoup.connect(urlPrefix + String.valueOf(r.nextInt(1000000)) + urlSuffix).get();
+			} catch (IOException e) {
+				// Do nothing
+			}
+		}
 	}
 }
